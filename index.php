@@ -10,6 +10,12 @@ if (isset($_POST['btnSend'])) {
   $password = trim($_POST['password']);
   $passwordConfirmation = trim($_POST['passwordConfirmation']);
 
+  //Variaveis de atribuição do CSS de ERROR e/ou SUCCESS nos campos preenchidos/mensagens 
+  $css_userName = 'success';
+  $css_email = 'success';
+  $css_password = 'success';
+  $css_passwordConfirmation = '';
+
   // Variavél auxiliar para mensagens de Erro e/ ou Sucesso
   $check = '';
 
@@ -18,26 +24,32 @@ if (isset($_POST['btnSend'])) {
   // If para validações dos campos input 'Nome do Usuário'
   if (!ValidarUsuario($userName, 3)) {
     $check = 'Nome deverá conter no mínimo 3 caracteres<br>';
+    $css_userName = 'error';
   }
   // If para validações dos campos input 'Email do Usuário'
   if (!ValidarUsuario($email, 10)) {
     $check .= 'Digite um email váldio<br>';
+    $css_email = 'error';
   }
   // If para validações dos campos input 'Senha'
   if (!ValidarUsuario($password, 6)) {
     $check .= 'Senha deverá conter no mínimo 6 caracteres<br>';
+    $css_password = 'error';
   }
   // If para validações dos campos input 'Confirmar Senha'
   if (!ValidarSenha($password, $passwordConfirmation)) {
     $check .= 'As senhas devem ser iguais<br>';
-  } 
+    $css_passwordConfirmation = 'error';
+  } else {
+    $css_passwordConfirmation = 'success';
+  }
 
   // If para validação de mensagem de sucesso  de todos os campos input
   if ($check === '') {
     echo 'Campos validdos com sucesso';
   } else {
     echo $check;
-  }
+  } 
 
   echo '</echo>';
 }
@@ -76,22 +88,22 @@ if (isset($_POST['btnSend'])) {
 
           <div class="form-control">
             <label for="uesername">Nome do Usuário</label>
-            <input type="text" name="userName" id="userName" placeholder="Digite o nome do usuário..." value="<?= isset($userName) ? $userName : '' ?>">
+            <input type="text" name="userName" id="userName" placeholder="Digite o nome do usuário..." value="<?= isset($userName) ? $userName : '' ?>" class="<?= isset($css_userName) ? $css_userName : '' ?>">
           </div>
 
           <div class="form-control">
             <label for="email">Email do Usuário</label>
-            <input type="text" name="email" id="email" placeholder="Digite o email do usuário..." value="<?= isset($email) ? $email : '' ?>">
+            <input type="text" name="email" id="email" placeholder="Digite o email do usuário..." value="<?= isset($email) ? $email : '' ?>" class="<?= isset($css_email) ? $css_email : '' ?>">
           </div>
 
           <div class="form-control">
             <label for="password">Senha</label>
-            <input type="password" name="password" id="password" placeholder="Digite a senha..." value="<?= isset($password) ? $password : '' ?>">
+            <input type="password" name="password" id="password" placeholder="Digite a senha..." value="<?= isset($password) ? $password : '' ?>" class="<?= isset($css_password) ? $css_password : '' ?>">
           </div>
 
           <div class="form-control">
             <label for="passwordConfirmation">Confirmar Senha</label>
-            <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirme sua senha..." value="<?= isset($passwordConfirmation) ? $passwordConfirmation : '' ?>">
+            <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirme sua senha..." value="<?= isset($passwordConfirmation) ? $passwordConfirmation : '' ?>" class="<?= isset($css_passwordConfirmation) ? $css_passwordConfirmation : '' ?>">
           </div>
 
           <button class="form-button" name="btnSend">Entrar</button>
