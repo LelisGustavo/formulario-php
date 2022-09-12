@@ -114,8 +114,4 @@ if (isset($_POST['btnSend'])) {
 
 </body>
 
-<footer>
-  &copy; Developed by Gustavo Lélis
-</footer>
-
 </html>
