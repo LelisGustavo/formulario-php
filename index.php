@@ -49,7 +49,7 @@ if (isset($_POST['btnSend'])) {
     echo 'Campos validdos com sucesso';
   } else {
     echo $check;
-  } 
+  }
 
   echo '</echo>';
 }
@@ -113,5 +113,9 @@ if (isset($_POST['btnSend'])) {
   </center>
 
 </body>
+
+<footer>
+  &copy; Developed by Gustavo Lélis
+</footer>
 
 </html>
